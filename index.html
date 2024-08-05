@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Customer Management</h1>
+
+<h2>Create Customer</h2>
+<form id="createCustomerForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="company_name">Company Name:</label>
+    <input type="text" id="company_name" name="company_name" required>
+    <br>
+    <button type="submit">Create</button>
+</form>
+
+<h2>Update Customer</h2>
+<form id="updateCustomerForm" style="display:none;">
+    <input type="hidden" id="update_id" name="id" required>
+    <label for="update_name">Name:</label>
+    <input type="text" id="update_name" name="name" required>
+    <br>
+    <label for="update_email">Email:</label>
+    <input type="email" id="update_email" name="email" required>
+    <br>
+    <label for="update_company_name">Company Name:</label>
+    <input type="text" id="update_company_name" name="company_name" required>
+    <br>
+    <button type="submit">Update</button>
+</form>
+
+<h2>Customers</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Company Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="customerTableBody">
+    <!-- Customers will be populated here -->
+    </tbody>
+</table>
+
+<script>
+document.getElementById('createCustomerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch('api/create.php', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        loadCustomers();
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+document.getElementById('updateCustomerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const jsonData = {};
+    formData.forEach((value, key) => { jsonData[key] = value });
+    fetch('api/update.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    }).then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        document.getElementById('updateCustomerForm').reset();
+        document.getElementById('updateCustomerForm').style.display = 'none';
+        loadCustomers();
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+function loadCustomers() {
+    fetch('api/read.php')
+    .then(response => response.json())
+    .then(data => {
+        const customerTableBody = document.getElementById('customerTableBody');
+        customerTableBody.innerHTML = '';
+        data.forEach(customer => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${customer.id}</td>
+                <td>${customer.name}</td>
+                <td>${customer.email}</td>
+                <td>${customer.company_name}</td>
+                <td>
+                    <button onclick="editCustomer(${customer.id}, '${customer.name}', '${customer.email}', '${customer.company_name}')">Edit</button>
+                    <button onclick="deleteCustomer(${customer.id})">Delete</button>
+                </td>
+            `;
+            customerTableBody.appendChild(row);
+        });
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function editCustomer(id, name, email, company_name) {
+    document.getElementById('update_id').value = id;
+    document.getElementById('update_name').value = name;
+    document.getElementById('update_email').value = email;
+    document.getElementById('update_company_name').value = company_name;
+    document.getElementById('updateCustomerForm').style.display = 'block';
+}
+
+function deleteCustomer(id) {
+    fetch('api/delete.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: id })
+    }).then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        loadCustomers();
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+loadCustomers();
+</script>
+</body>
+</html>

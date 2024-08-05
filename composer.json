@@ -1,0 +1,15 @@
+{
+    "name": "yiyiliu/focus-camera-junior-dev-php",
+    "authors": [
+        {
+            "name": "Yiyi127",
+            "email": "liuee0127@gmail.com"
+        }
+    ],
+    "require": {},
+        "autoload": {
+            "psr-4": {
+                "Src\\": "src/"
+            }
+        }
+}
