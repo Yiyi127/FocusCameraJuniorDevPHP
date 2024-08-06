@@ -37,7 +37,7 @@ This is a simple CRUD application for managing customer entities using PHP. The 
 ## Setup Instructions
 
 ### 1. Clone the Repository
-The branch I'm using is the main, I also set this one as the default branch. But just in case if you are on different branch, change it to main.
+The branch I'm using is the ***main***, I also set this one as the default branch. But just in case if you are on different branch, change it to main.
 ```sh
 git clone https://github.com/Yiyi127/FocusCameraJuniorDevPHP.git
 cd FocusCameraJuniorDevPHP
