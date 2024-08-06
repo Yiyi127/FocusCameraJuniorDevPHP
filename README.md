@@ -61,6 +61,7 @@ For mac
 ```
 /Applications/XAMPP/xamppfiles/bin/mysql -u root -p < init.sql
 ```
+- 3. Database config setting is in database.php, you can change the name and password there. If you wanna connect to a database, you can change the settings there. I used the default localhost database, the name is root and no password. 
 ### 4. Set Up Virtual Host (Optional)
 For a better development experience, you can set up a virtual host.
 
