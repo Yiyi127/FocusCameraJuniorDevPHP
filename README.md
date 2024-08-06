@@ -89,10 +89,10 @@ For a better development experience, you can set up a virtual host.
 Open your web browser and navigate to http://focuscamera.local (or http://localhost/FocusCameraJuniorDevPHP if not using a virtual host).
 
 ### 6. API Endpoints
-POST api/create.php: Create a new customer
-GET api/read.php: Read all customers
-POST api/update.php: Update a customer
-POST api/delete.php: Delete a customer
+- POST api/create.php: Create a new customer
+- GET api/read.php: Read all customers
+- POST api/update.php: Update a customer
+- POST api/delete.php: Delete a customer
 
 ### 7. Frontend Interface
 The frontend interface for managing customers is provided in index.html. This interface interacts with the backend via the above API endpoints to perform CRUD operations.
