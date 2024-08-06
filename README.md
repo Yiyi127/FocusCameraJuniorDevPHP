@@ -9,12 +9,30 @@ This is a simple CRUD application for managing customer entities using PHP. The 
 - Create, Read, Update, and Delete customers
 - Customers have the following attributes: `name`, `email`, and `address`
 - Frontend interface for managing customers
+- **Data validation and sanitization:** User input is sanitized and validated using the `Validator` class to protect against SQL injection.
+- **Dependency injection:** The `Database` class is used to inject database connection methods into other classes.
+- **Inheritance principle:** The `Customer` class is extended by the `CorporateCustomer` class to reuse code across multiple types of customers.
 
 ## Requirements
 - PHP 7.4 or higher
 - Composer
 - MySQL
 - Apache server (XAMPP recommended for local development)
+
+## Implementation Details
+
+### 1. Data Validation and Sanitization
+- **Explanation**: User input is sanitized and validated to protect against SQL injection.
+- **How It's Done**: The `Validator` class provides methods to sanitize and validate strings, emails, and integers. These methods are used in the `CustomerController` to ensure all user inputs are clean and valid before processing.
+
+### 2. Dependency Injection
+- **Explanation**: Dependency injection is used for database connection methods.
+- **How It's Done**: The `Database` class creates a PDO connection, which is then injected into the `CustomerService` and `CustomerController` classes. This allows for a clean separation of concerns and easier testing.
+
+### 3. Inheritance Principle
+- **Explanation**: Demonstrates the inheritance principle by reusing code across multiple types of customers.
+- **How It's Done**: An abstract `Customer` class is created, which contains common properties and methods. The `CorporateCustomer` class extends this abstract class, implementing the specific logic for managing corporate customers.
+
 
 ## Setup Instructions
 
@@ -29,11 +47,11 @@ Run the following command to install the necessary PHP dependencies using Compos
 composer install
 ```
 ### 3. Configure the Database
-1. Start your Apache and MySQL services (using XAMPP or another method).
-2. Create the database and tables by running the init.sql script:
-   a. Use phpmyadmin to run:
+- 1. Start your Apache and MySQL services (using XAMPP or another method).
+- 2. Create the database and tables by running the init.sql script:
+  - 1. Use phpmyadmin to run:
        login to the phpmyadmin, run the init.sql
-   b. Use console to run:
+  - 2. Use console to run:
    
 ```
 /path/to/you/mysql -u root -p < init.sql
@@ -45,7 +63,7 @@ For mac
 ### 4. Set Up Virtual Host (Optional)
 For a better development experience, you can set up a virtual host.
 
-1. Edit your httpd-vhosts.conf file (typically located in /Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf):
+- 1. Edit your httpd-vhosts.conf file (typically located in /Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf):
 ```
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
@@ -60,11 +78,11 @@ For a better development experience, you can set up a virtual host.
     CustomLog "logs/focuscamera.local-access.log" common
 </VirtualHost>
 ```
-2. Edit your hosts file to map the local domain to localhost (typically located in /etc/hosts):
+- 2. Edit your hosts file to map the local domain to localhost (typically located in /etc/hosts):
 ```
 127.0.0.1    focuscamera.local
 ```
-3. Restart Apache to apply the changes.
+- 3. Restart Apache to apply the changes.
 
 ### 5. Running the Application
 Open your web browser and navigate to http://focuscamera.local (or http://localhost/FocusCameraJuniorDevPHP if not using a virtual host).
