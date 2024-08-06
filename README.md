@@ -38,7 +38,7 @@ This is a simple CRUD application for managing customer entities using PHP. The 
 
 ### 1. Clone the Repository
 ```sh
-git clone <repository-url>
+git clone https://github.com/Yiyi127/FocusCameraJuniorDevPHP.git
 cd FocusCameraJuniorDevPHP
 ```
 ### 2. Install Dependencies
