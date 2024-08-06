@@ -86,8 +86,10 @@ For a better development experience, you can set up a virtual host.
 ```
 - 3. Restart Apache to apply the changes.
 
+
 ### 5. Running the Application
 Open your web browser and navigate to http://focuscamera.local (or http://localhost/FocusCameraJuniorDevPHP if not using a virtual host).
+If you wanna see if the server is running, go to http://focuscamera.local/test.php (or http://localhost/FocusCameraJuniorDevPHP/test.php), it will show "It's working" if the server status is normal.
 
 ### 6. API Endpoints
 - POST api/create.php: Create a new customer
