@@ -127,3 +127,6 @@ FocusCameraJuniorDevPHP/
 ├── index.php
 └── index.html
 ```
+## Other
+- 1. In case the project doesn't run in your computer, I recorded a video of me showing all CRUD functions on this website.
+- 2. In case sometimes the CRUD is not working, just refresh the page.
