@@ -14,7 +14,7 @@ $controller = new CustomerController($db);
 $data = [
     'name' => $_POST['name'] ?? '',
     'email' => $_POST['email'] ?? '',
-    'company_name' => $_POST['company_name'] ?? ''
+    'address' => $_POST['address'] ?? ''
 ];
 
 error_log("Received data: " . json_encode($data));

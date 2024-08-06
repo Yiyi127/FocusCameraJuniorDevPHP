@@ -15,7 +15,7 @@ class CustomerService {
     public function createCustomer($data) {
         $this->customer->name = $data['name'];
         $this->customer->email = $data['email'];
-        $this->customer->company_name = $data['company_name'];
+        $this->customer->address = $data['address'];
 
         if ($this->customer->create()) {
             return ['message' => 'Customer Created'];
@@ -36,7 +36,7 @@ class CustomerService {
                     'id' => $id,
                     'name' => $name,
                     'email' => $email,
-                    'company_name' => $company_name
+                    'address' => $address
                 ];
             }
             return $customers;
@@ -49,7 +49,7 @@ class CustomerService {
         $this->customer->id = $data['id'];
         $this->customer->name = $data['name'];
         $this->customer->email = $data['email'];
-        $this->customer->company_name = $data['company_name'];
+        $this->customer->address = $data['address'];
 
         if ($this->customer->update()) {
             return ['message' => 'Customer Updated'];

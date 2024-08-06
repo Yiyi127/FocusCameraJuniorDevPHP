@@ -13,7 +13,7 @@ $controller = new CustomerController($db);
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (isset($data['id']) && isset($data['name']) && isset($data['email']) && isset($data['company_name'])) {
+if (isset($data['id']) && isset($data['name']) && isset($data['email']) && isset($data['address'])) {
     $response = $controller->update($data);
 } else {
     $response = ['message' => 'Invalid Data'];

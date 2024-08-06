@@ -3,16 +3,16 @@ namespace Src\Models;
 
 class CorporateCustomer extends Customer {
     public function create() {
-        $query = 'INSERT INTO ' . $this->table . ' SET name = :name, email = :email, company_name = :company_name';
+        $query = 'INSERT INTO ' . $this->table . ' SET name = :name, email = :email, address = :address';
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->company_name = htmlspecialchars(strip_tags($this->company_name));
+        $this->address = htmlspecialchars(strip_tags($this->address));
 
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':company_name', $this->company_name);
+        $stmt->bindParam(':address', $this->address);
 
         if ($stmt->execute()) {
             return true;
@@ -31,17 +31,17 @@ class CorporateCustomer extends Customer {
     }
 
     public function update() {
-        $query = 'UPDATE ' . $this->table . ' SET name = :name, email = :email, company_name = :company_name WHERE id = :id';
+        $query = 'UPDATE ' . $this->table . ' SET name = :name, email = :email, address = :address WHERE id = :id';
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->company_name = htmlspecialchars(strip_tags($this->company_name));
+        $this->address = htmlspecialchars(strip_tags($this->address));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':company_name', $this->company_name);
+        $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':id', $this->id);
 
         if ($stmt->execute()) {

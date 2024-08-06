@@ -14,7 +14,7 @@ class CustomerController {
     public function create($data) {
         $data['name'] = Validator::sanitizeString($data['name']);
         $data['email'] = Validator::sanitizeEmail($data['email']);
-        $data['company_name'] = Validator::sanitizeString($data['company_name']);
+        $data['address'] = Validator::sanitizeString($data['address']);
 
         if (!Validator::validateEmail($data['email'])) {
             return ['message' => 'Invalid Email'];
@@ -31,7 +31,7 @@ class CustomerController {
         $data['id'] = Validator::sanitizeInt($data['id']);
         $data['name'] = Validator::sanitizeString($data['name']);
         $data['email'] = Validator::sanitizeEmail($data['email']);
-        $data['company_name'] = Validator::sanitizeString($data['company_name']);
+        $data['address'] = Validator::sanitizeString($data['address']);
 
         if (!Validator::validateEmail($data['email'])) {
             return ['message' => 'Invalid Email'];
