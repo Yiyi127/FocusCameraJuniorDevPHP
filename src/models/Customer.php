@@ -8,6 +8,7 @@ abstract class Customer {
     public $id;
     public $name;
     public $email;
+    public $company_name;
 
     public function __construct($db) {
         $this->conn = $db;

@@ -2,8 +2,6 @@
 namespace Src\Models;
 
 class CorporateCustomer extends Customer {
-    public $company_name;
-
     public function create() {
         $query = 'INSERT INTO ' . $this->table . ' SET name = :name, email = :email, company_name = :company_name';
         $stmt = $this->conn->prepare($query);

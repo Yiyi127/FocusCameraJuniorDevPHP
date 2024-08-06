@@ -2,7 +2,6 @@
 namespace Src\Services;
 
 use Src\Models\CorporateCustomer;
-use PDO;
 
 class CustomerService {
     private $db;
@@ -31,7 +30,7 @@ class CustomerService {
 
         if ($num > 0) {
             $customers = [];
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
                 extract($row);
                 $customers[] = [
                     'id' => $id,
